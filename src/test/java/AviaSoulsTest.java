@@ -68,6 +68,38 @@ public class AviaSoulsTest {
     }
 
     @Test
+    public void searchNoOneTicket() {
+        AviaSouls ticket = new AviaSouls();
+        ticket.add(ticket1);
+        ticket.add(ticket2);
+        ticket.add(ticket3);
+        ticket.add(ticket4);
+        ticket.add(ticket5);
+        Ticket ticket6 = new Ticket("city1", "city3", 50, 19, 23);
+        ticket.add(ticket6);
+
+        Ticket[] expected = {};
+        Ticket[] actual = ticket.search("city2", "city3");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchExactlyOneTicket() {
+        AviaSouls ticket = new AviaSouls();
+        ticket.add(ticket1);
+        ticket.add(ticket2);
+        ticket.add(ticket3);
+        ticket.add(ticket4);
+        ticket.add(ticket5);
+        Ticket ticket6 = new Ticket("city1", "city3", 50, 19, 23);
+        ticket.add(ticket6);
+
+        Ticket[] expected = {ticket6};
+        Ticket[] actual = ticket.search("city1", "city3");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void searchIfToNotRelevant() {
         AviaSouls ticket = new AviaSouls();
         ticket.add(ticket1);
